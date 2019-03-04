@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div style="float:right" class="btn-group float-right">
 							<ol class="breadcrumb hide-phone p-0 m-0">
 									<li class="breadcrumb-item"><?php echo $datalogin->nama; ?></li>
-									<li class="breadcrumb-item active"><?php echo $datalogin->id_user; ?></li>
+									<li class="breadcrumb-item active"><?php echo $datalogin->role; ?></li>
 							</ol>
 					</div>
 				</div>
