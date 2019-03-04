@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 	<!-- Font Awesome CSS CDN -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+	<link rel="icon" href="<?=base_url()?>assets/images/favicon-1.png" type="image/gif">
 	<!-- <link href="<?php echo base_url('assets/css/bootstrap.min.css') ; ?>" rel="stylesheet"> -->
 
 <!-- Custom styles for this template -->
