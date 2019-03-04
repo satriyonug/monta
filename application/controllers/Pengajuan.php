@@ -46,6 +46,22 @@ class Pengajuan extends CI_Controller {
             $g = $this->input->post('pembimbing2');
             $h = $this->input->post('proposal_ta');
             $i = $this->input->post('referensi_ta');
+
+            $config['upload_path']          = './upload/proposal/';
+            $config['allowed_types']        = 'pdf|csv';
+            $config['file_name']            = $this->input->post('proposal_ta');
+            $config['overwrite']			= true;
+            $config['max_size']             = 1024; // 1MB
+            // $config['max_width']            = 1024;
+            // $config['max_height']           = 768;
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload()) {
+                $this->upload->data("file_name");
+            }
+            
             
 
             date_default_timezone_set('Asia/Jakarta');

@@ -29,7 +29,6 @@ class Login extends CI_Controller {
     $where = array(
     'id_user' => $id_user,
     'password' => md5($password),
-    'role' => 'Mahasiswa'
     );
 
     $cek = $this->MLogin->login("tb_user", $where )->num_rows();
@@ -42,7 +41,17 @@ class Login extends CI_Controller {
         );
 
         $this->session->set_userdata($data_session);
-        redirect(base_url('dashboard'));
+        $log = $this->MLogin->validate($id_user,$password);
+        $data = $log->row_array();
+        if($data['role'] == "Mahasiswa")
+        {
+            redirect(base_url('dashboard'));
+        }
+        elseif ($data['role'] == "Dosen")
+        {
+            redirect(base_url('dosen'));
+        }
+        
     } else {
         $this->session->set_flashdata('gagal_login', 'gagal');
         redirect(base_url('login'));
