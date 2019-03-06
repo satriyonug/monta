@@ -56,7 +56,7 @@
                         <form>
                             <div class="form-group">
                                 <input type="text" name="id_user" class="form-control form-control-lg"
-                                    placeholder="Email Address">
+                                    placeholder="NRP / NIP">
                             </div>
                             <div class="form-group">
                                 <input type="password" name="password" class="form-control form-control-lg"

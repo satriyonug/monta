@@ -39,8 +39,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							?>
           
 							<li class="<?php if ($this->uri->segment('1') == 'dashboard') {echo 'active';} ?>">
-								<a href="<?php echo base_url('dosen'); ?>">Dashboard</a>
+								<a href="<?php echo base_url('kaprodi'); ?>">Dashboard</a>
 							</li>
+							
 							<li><a href="<?php echo base_url('logout'); ?>">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->

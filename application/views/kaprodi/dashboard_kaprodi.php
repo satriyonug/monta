@@ -16,7 +16,8 @@
 	                <th>Nama</th>
 	                <th>NRP</th>
 	                <th>Judul TA</th>
-	                <th class="text-center">Verifikasi</th>                          
+	                <th class="text-center">Mengunggu Sidang</th> 
+									<th class="text-center">OK</th>                         
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -30,13 +31,37 @@
 	                <td><?php echo $row['judul_ta'] ?></td>
 	                <td><center>
 												<?php 
-													if ($row['status'] == "Mendaftar")
+													if ($row['status'] == "Mengajukan")
 													{
 															?><a href="<?php echo base_url('dosen/verifikasi/'.$row['id_proposal']); ?>" 
 																	onclick="return confirm('Apakah anda yakin ingin mengkonfirmasi data ini ?')" class="btn btn-xs btn-danger">
 																	<i class="glyphicon glyphicon-check"></i>
 																</a>
 															<?php
+													}
+													else
+													{?>
+														<?php echo "Belum Mengumpulkan Proposal"; 
+													}
+													
+												?>
+												
+											</center>
+									</td>
+									<td><center>
+												<?php 
+													
+													if ($row['status'] == "Sidang")
+													{
+															?><a href="<?php echo base_url('dosen/verifikasi/'.$row['id_proposal']); ?>" 
+																	onclick="return confirm('Apakah anda yakin ingin mengkonfirmasi data ini ?')" class="btn btn-xs btn-danger">
+																	<i class="glyphicon glyphicon-check"></i>
+																</a>
+															<?php
+													}
+													else
+													{?>
+														<?php echo "Menunggu Sidang"; 
 													}
 												?>
 												

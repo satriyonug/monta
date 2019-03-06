@@ -51,6 +51,10 @@ class Login extends CI_Controller {
         {
             redirect(base_url('dosen'));
         }
+        elseif ($data['role'] == "Kaprodi")
+        {
+            redirect(base_url('kaprodi'));
+        }
         
     } else {
         $this->session->set_flashdata('gagal_login', 'gagal');

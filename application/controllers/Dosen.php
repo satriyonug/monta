@@ -21,12 +21,29 @@ class Dosen extends CI_Controller {
      $data['konten'] = "dosen/dashboard_dosen";
      $data['title']  = "Tugas Akhir";
      $data['web'] = $this->MWeb->tampil()->row();
-     $nama   = $this->session->userdata("nama");
+     $id_login   = $this->session->userdata("id_user");
      $this->db->select("CONCAT(prefix,id_proposal) AS 'ID_TA', rmk, status, id_proposal, status, nama_mhs, nrp, judul_ta");
      $this->db->from('tb_proposal');
-     $this->db->where('pembimbing1_ta', "Abdul Munif");
+     $this->db->where('nip1', $id_login)->or_where('nip2', $id_login);
      $query = $this->db->get();
      $data['data']   = $query->result_array();
      $this->load->view('dosen/template_dosen', $data);
     }
+
+    public function verifikasi($id)
+    {
+
+        $objek = array(
+                
+            'status' => "Mengajukan",
+             );
+
+        $this->db->where('id_proposal', $id);
+        $query = $this->db->update('tb_proposal', $objek);
+        if ($query) {
+            $this->session->set_flashdata('berhasil_edit', 'sukses');
+            redirect(base_url('dosen'));
+        }
+    } 
+
 } 
