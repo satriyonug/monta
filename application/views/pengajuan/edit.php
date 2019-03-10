@@ -3,7 +3,7 @@
 <?php if ($this->session->flashdata('berhasil_simpan')) { ?>
   <?php $this->load->view('alert/berhasil_simpan'); ?>
  <?php } ?>
- <?php echo form_open(base_url('pengajuan/edit/'.$editdata->id_proposal), 'class="form-horizontal"' ); ?>
+ <?php echo form_open_multipart(base_url('pengajuan/edit/'.$editdata->id_proposal), 'class="form-horizontal"' ); ?>
 <div class="form-group">
   <label class="col-sm-2">Nama</label>
   <div class="col-sm-4">
@@ -53,20 +53,23 @@
  <div class="form-group">
   <label class="col-sm-2">Pembimbing 1</label>
   <div class="col-sm-4">
-   <select name="pembimbing1" class="form-control" required="">
-    <option value="<?php echo $editdata->pembimbing1_ta; ?>"> -- <?php echo $editdata->pembimbing1_ta; ?> -- </option>
-    <option value="Hari Ginardi">Hari Ginardi</option>
-    <option value="Kelly Rossa">Kelly Rossa</option>
+    <select name="pembimbing1" class="form-control" required="">
+      <option value="<?php echo $editdata->pembimbing1_ta."+".$editdata->nip1; ?>"> -- <?php echo $editdata->pembimbing1_ta; ?> -- </option>
+      <?php foreach ($datadosen as $dos) : ?>
+      <option value="<?php echo $dos['nama_dosen']."+".$dos['nip']; ?>"><?php echo "--  "  .$dos['nama_dosen']; ?></option>
+      <?php endforeach; ?>
+    </select>
    </select>
   </div>
  </div>
  <div class="form-group">
   <label class="col-sm-2">Pembimbing 2</label>
   <div class="col-sm-4">
-   <select name="pembimbing2" class="form-control" required="">
-   <option value="<?php echo $editdata->pembimbing2_ta; ?>"> -- <?php echo $editdata->pembimbing2_ta; ?> -- </option>
-    <option value="Hari Ginardi">Hari Ginardi</option>
-    <option value="Kelly Rossa">Kelly Rossa</option>
+   <select name="pembimbing2" class="form-control" >
+    <option value="<?php echo $editdata->pembimbing2_ta."+".$editdata->nip2; ?>"> -- <?php echo $editdata->pembimbing2_ta; ?> -- </option>
+    <?php foreach ($datadosen as $dos) : ?>
+      <option value="<?php echo $dos['nama_dosen']."+".$dos['nip']; ?>"><?php echo "--  "  .$dos['nama_dosen']; ?></option>
+      <?php endforeach; ?>
    </select>
   </div>
  </div>
@@ -79,7 +82,7 @@
  <div class="form-group">
   <label class="col-sm-2">Referensi TA</label>
   <div class="col-sm-4">
-   <input type="file" class="form-control-file" name="referensi_ta" class="form-control" required="">
+   <input type="file" class="form-control-file" name="referensi_ta" class="form-control" >
   </div>
  </div>
  <div class="form-group">

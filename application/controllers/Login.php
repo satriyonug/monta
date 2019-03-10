@@ -51,6 +51,10 @@ class Login extends CI_Controller {
         {
             redirect(base_url('dosen'));
         }
+        elseif ($data['role'] == "Rmk")
+        {
+            redirect(base_url('rmk'));
+        }
         elseif ($data['role'] == "Kaprodi")
         {
             redirect(base_url('kaprodi'));

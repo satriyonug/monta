@@ -18,9 +18,9 @@
 
 
 
-<div class="panel panel-info">
+<div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-book" aria-hidden="true"></i>Proposal Tugas Akhir</h3>
+        <h3 class="panel-title"><i class="fa fa-book" aria-hidden="true"></i>Status Tugas Akhir</h3>
     </div>
     <div class="panel-body">
         <?php 
@@ -31,7 +31,7 @@
             $query = $this->db->get();
             if (empty($query->num_rows() > 0))
             {
-                ?><a href="<?php echo base_url('pengajuan/tambah'); ?>" class="btn btn-info">Tambah Data</a>
+                ?><a href="<?php echo base_url('pengajuan/do_upload'); ?>" class="btn btn-info">Tambah Data</a>
                 <hr>
                 <h4>Belum Mengajukan Proposal Tugas Akhir</h4>
                 <?php
@@ -47,7 +47,8 @@
                         <th>Pembimbing1</th>
                         <th>Pembimbing2</th>
                         <th>Status</th>
-                        <th class="text-center">Edit</th>                          
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Download</th>                          
                     </tr>
                     </thead>
                     <tbody>
@@ -62,9 +63,12 @@
                         <a href="<?php echo base_url('pengajuan/edit/'.$value['id_proposal']); ?>" class="btn btn-xs btn-warning">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
-                        <!-- <a href="<?php echo base_url('pengajuan/hapus/'.$value['id_proposal']); ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')" class="btn btn-xs btn-danger">
-                            <i class="glyphicon glyphicon-trash"></i>
-                        </a> -->
+                        
+                        </td>
+                        <td class="text-center">
+                            <a href="<?php echo base_url('pengajuan/download/'.$value['id_proposal']); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-xs btn-success">
+                                <i class="glyphicon glyphicon-download"></i>
+                            </a>
                         </td>
                     </tr>
                     <?php $no++; endforeach; ?>

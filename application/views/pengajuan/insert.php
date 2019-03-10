@@ -8,7 +8,8 @@
   <?php $this->load->view('alert/berhasil_simpan'); ?>
  <?php } ?>
 
-<?php echo form_open(base_url('pengajuan/tambah'), 'class="form-horizontal"' ); ?>
+<?php echo form_open_multipart('pengajuan/do_upload', 'class="form-horizontal"'); ?>
+  <form action="" method="">
   <div class="form-group">
       <label class="col-sm-2">Nama</label>
       <div class="col-sm-4">
@@ -60,31 +61,33 @@
       <div class="col-sm-4">
         <select name="pembimbing1" class="form-control" required="">
           <option></option>
-          <option value="Hari Ginardi">Hari Ginardi</option>
-          <option value="Kelly Rossa">Kelly Rossa</option>
+          <?php  foreach ($data as $value) : ?>
+          <option value="<?php echo $value['nama_dosen']."+".$value['nip']; ?>"><?php echo "--  "  .$value['nama_dosen']; ?></option>
+          <?php endforeach; ?>
         </select>
       </div>
   </div>
   <div class="form-group">
       <label class="col-sm-2">Pembimbing 2</label>
       <div class="col-sm-4">
-        <select name="pembimbing2" class="form-control" required="">
+        <select name="pembimbing2" class="form-control">
           <option></option>
-          <option value="Hari Ginardi">Hari Ginardi</option>
-          <option value="Kelly Rossa">Kelly Rossa</option>
+          <?php foreach ($data as $value) : ?>
+          <option value="<?php echo $value['nama_dosen']."+".$value['nip']; ?>"><?php echo "--  "  .$value['nama_dosen']; ?></option>
+          <?php endforeach; ?>
         </select>
       </div>
   </div>
   <div class="form-group">
       <label class="col-sm-2">Proposal TA</label>
       <div class="col-sm-4">
-        <input type="file" class="form-control-file" name="proposal_ta" class="form-control" required="">
+        <input type="file"  class="form-control-file" name="proposal_ta" class="form-control" required="">
       </div>
   </div>
   <div class="form-group">
       <label class="col-sm-2">Referensi TA</label>
       <div class="col-sm-4">
-        <input type="file" class="form-control-file" name="referensi_ta" class="form-control" required="">
+        <input type="file" class="form-control-file" name="referensi_ta" class="form-control" >
       </div>
   </div>
   <div class="form-group">
@@ -92,4 +95,5 @@
         <input type="submit" value="Submit" name="submit" class="btn btn-success">
       </div>
   </div>
+  </form>
 <?php echo form_close(); ?> 

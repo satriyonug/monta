@@ -43,6 +43,8 @@
 
 <div id="app">
 <main>
+ 
+
     <div id="primary" class="p-t-b-100 height-full ">
         <div class="container">
             <div class="row">
@@ -54,6 +56,9 @@
                     </div>
                     <?php echo form_open(base_url('login/aksilogin'), 'class="form-signin"'); ?>
                         <form>
+                        <?php if ($this->session->flashdata('gagal_login')) { ?>
+                        <?php $this->load->view('alert/gagal_login'); ?>
+                        <?php } ?>
                             <div class="form-group">
                                 <input type="text" name="id_user" class="form-control form-control-lg"
                                     placeholder="NRP / NIP">

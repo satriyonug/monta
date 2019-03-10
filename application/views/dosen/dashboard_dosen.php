@@ -1,4 +1,19 @@
+<?php if ($this->session->flashdata('berhasil_simpan')) { ?>
+  <?php $this->load->view('alert/berhasil_simpan'); ?>
+ <?php } ?>
 
+ <?php if ($this->session->flashdata('berhasil_edit')) { ?>
+  <?php $this->load->view('alert/berhasil_edit'); ?>
+ <?php } ?>
+
+ <?php if ($this->session->flashdata('berhasil_hapus')) { ?>
+  <?php $this->load->view('alert/berhasil_hapus'); ?>
+ <?php } ?>
+
+ <?php if ($this->session->flashdata('gagal_cari')) { ?>
+  <?php $this->load->view('alert/gagal_cari'); ?>
+ <?php } ?>
+ 
 	<div class="container">
 		
 		<div class="panel panel-warning">
@@ -22,15 +37,16 @@
 	            <tbody>
 	              <?php $no = 1 ; foreach ($data as $row) : ?>
 	              <tr>
-                    <th scope="row"><?php echo $no; ?></th>
+                  <th scope="row"><?php echo $no; ?></th>
 	                <td><?php echo $row['rmk'] ?></td>
-                    <td><?php echo $row['status'] ?></td>
-                    <td><?php echo $row['nama_mhs'] ?></td>
+									<td><?php echo $row['status'] ?></td>
+									<td><?php echo $row['nama_mhs'] ?></td>
 	                <td><?php echo $row['nrp'] ?></td>
 	                <td><?php echo $row['judul_ta'] ?></td>
+									
 	                <td><center>
 												<?php 
-													if ($row['status'] == "Mendaftar")
+													if ($row['status'] == "Mengajukan Dosbing")
 													{
 															?><a href="<?php echo base_url('dosen/verifikasi/'.$row['id_proposal']); ?>" 
 																	onclick="return confirm('Apakah anda yakin ingin mengkonfirmasi data ini ?')" class="btn btn-xs btn-danger">
@@ -38,7 +54,11 @@
 																</a>
 															<?php
 													}
+													else {
 												?>
+													<p>Sudah diverifikasi</p>
+													<?php } ?>
+
 												
 											</center>
 									</td>

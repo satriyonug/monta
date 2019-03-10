@@ -6,13 +6,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Monta ITS</title>
 	<!-- Bootstrap CSS CDN -->
+	<link rel="icon" href="<?=base_url()?>assets/images/favicon-1.png" type="image/gif">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	<!-- DataTables CSS CDN -->
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 	<!-- Font Awesome CSS CDN -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="icon" href="<?=base_url()?>assets/images/favicon-1.png" type="image/gif">
+	
 	<!-- <link href="<?php echo base_url('assets/css/bootstrap.min.css') ; ?>" rel="stylesheet"> -->
 
 <!-- Custom styles for this template -->
@@ -29,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="icon-bar"></span>
           </button>
           <!-- <img style="width:5%; length:10%" src="assets/images/its.png" alt=""> -->
-					<a class="navbar-brand" href="<?php echo base_url('dashboard'); ?>"><?php echo $web->nama_web; ?></a>
+					<a class="navbar-brand" href="<?php echo base_url('kaprodi'); ?>"><?php echo $web->nama_web; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -38,10 +39,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									$datalogin  = $this->db->get_where("tb_user", array('id_user'=> $id_login))->row();
 							?>
           
-							<li class="<?php if ($this->uri->segment('1') == 'dashboard') {echo 'active';} ?>">
-								<a href="<?php echo base_url('kaprodi'); ?>">Dashboard</a>
-							</li>
-							
 							<li><a href="<?php echo base_url('logout'); ?>">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -83,6 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    </div>
 	  </div>
 	</div>
+
 	<!-- jQuery JS CDN -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>	
 	<!-- jQuery DataTables JS CDN -->
@@ -92,7 +90,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- Bootstrap JS CDN -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
-    <script type="text/javascript">
+    
+		<script type="text/javascript">
     	// Start jQuery function after page is loaded
         $(document).ready(function(){
         	// Initiate DataTable function comes with plugin
@@ -104,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // Start AJAX function
                 $.ajax({
                 	// Path for controller function which fetches selected phone data
-                    url: "<?php echo base_url() ?>Proposal/get_proposal_result",
+                    url: "<?php echo base_url() ?>Rmk/get_proposal_result",
                     // Method of getting data
                     method: "POST",
                     // Data is sent to the server
