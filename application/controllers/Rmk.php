@@ -109,4 +109,20 @@ class Rmk extends CI_Controller {
 		redirect(base_url('rmk'));
  
 	}
+
+	public function revisi_proposal()
+	{
+		date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d H:i:s');
+		
+		$data=array(
+			"revisi"=>$_POST['revisi'],
+			'updated_at' => $date
+		);
+		$this->db->where('id_proposal', $_POST['id_proposal']);
+		$this->db->update('tb_proposal',$data);
+		$this->session->set_flashdata('berhasil_edit',"sukses");
+		redirect(base_url('rmk'));
+ 
+	}
 } 

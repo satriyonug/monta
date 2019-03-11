@@ -60,6 +60,7 @@
 	                <th>Judul TA</th>
 									<th class="text-center">Details</th>
 									<th class="text-center">Update Status</th>
+									<th class="text-center">Revisi</th>
 									<th class="text-center">Download</th>                          
 	              </tr>
 	            </thead>
@@ -78,8 +79,13 @@
 											<a data-toggle="modal" data-target="#modal-edit<?=$row->id_proposal;?>" class="btn btn-success btn-circle" data-popup="tooltip" data-placement="top" title="Edit Data"><i class="fa fa-pencil"></i></a>
 										</center>
 									</td>
+									<td>
+										<center>
+											<a data-toggle="modal" data-target="#modal-revisi<?=$row->id_proposal;?>" class="btn btn-warning btn-circle" data-popup="tooltip" data-placement="top" title="Revisi"><i class="fa fa-pencil"></i></a>
+										</center>
+									</td>
 									<td class="text-center">
-											<a href="<?php echo base_url('proposal/download/'.$row->id_proposal); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-xs btn-success">
+											<a href="<?php echo base_url('proposal/download/'.$row->id_proposal); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-circle btn-success">
 													<i class="glyphicon glyphicon-download"></i>
 											</a>
 									</td>
@@ -126,6 +132,38 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-success"><i class="icon-pencil5"></i> Update</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+<?php endforeach; ?>
+
+<?php $no=0; foreach($datas as $row): $no++; ?>
+<div class="row">
+  <div id="modal-revisi<?=$row->id_proposal;?>" class="modal fade">
+    <div class="modal-dialog">
+      <form action="<?php echo site_url('Rmk/revisi_proposal'); ?>" method="post">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Revisi Tugas Akhir</h4>
+        </div>
+        <div class="modal-body">
+
+          <input type="hidden" readonly value="<?=$row->id_proposal;?>" name="id_proposal" class="form-control" >
+
+          <div class="form-group">
+            <label class='col-md-3'>Revisi</label>
+            <div class='col-md-9'>
+						<input type="text" name="revisi" class="form-control" >
+						</div>
+          </div>
+          <br>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success"><i class="icon-pencil5"></i> Submit</button>
           </div>
         </form>
     </div>

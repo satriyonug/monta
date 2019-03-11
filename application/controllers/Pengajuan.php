@@ -22,7 +22,7 @@ class Pengajuan extends CI_Controller {
     {
         $data['title']  = "Proposal Tugas Akhir";
         $id_login   = $this->session->userdata("id_user");
-        $this->db->select("CONCAT(prefix,id_proposal) AS 'ID_TA', id_proposal, status, nama_mhs, nrp, judul_ta, pembimbing1_ta, pembimbing2_ta");
+        $this->db->select("CONCAT(prefix,id_proposal) AS 'ID_TA', revisi, id_proposal, status, nama_mhs, nrp, judul_ta, pembimbing1_ta, pembimbing2_ta");
         $this->db->from('tb_proposal');
         $this->db->where('nrp', $id_login);
         $query = $this->db->get();
