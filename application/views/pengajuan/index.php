@@ -48,7 +48,6 @@
                         <th>Pembimbing2</th>
                         <th>Status</th>
                         <th class="text-center">Edit</th>
-                        <th class="text-center">Download</th>                          
                     </tr>
                     </thead>
                     <tbody>
@@ -64,11 +63,6 @@
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
                         
-                        </td>
-                        <td class="text-center">
-                            <a href="<?php echo base_url('pengajuan/download/'.$value['id_proposal']); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-xs btn-success">
-                                <i class="glyphicon glyphicon-download"></i>
-                            </a>
                         </td>
                     </tr>
                     <?php $no++; endforeach; ?>

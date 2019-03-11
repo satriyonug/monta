@@ -59,7 +59,8 @@
 	                <th>NRP</th>
 	                <th>Judul TA</th>
 									<th class="text-center">Details</th>
-									<th class="text-center">Update Status</th>                          
+									<th class="text-center">Update Status</th>
+									<th class="text-center">Download</th>                          
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -76,6 +77,11 @@
 										<center>
 											<a data-toggle="modal" data-target="#modal-edit<?=$row->id_proposal;?>" class="btn btn-success btn-circle" data-popup="tooltip" data-placement="top" title="Edit Data"><i class="fa fa-pencil"></i></a>
 										</center>
+									</td>
+									<td class="text-center">
+											<a href="<?php echo base_url('proposal/download/'.$row->id_proposal); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-xs btn-success">
+													<i class="glyphicon glyphicon-download"></i>
+											</a>
 									</td>
 	              </tr>
 	              <?php $no++; endforeach; ?>
