@@ -59,11 +59,14 @@
 	                <th>NRP</th>
 	                <th>Judul TA</th>
 									<th class="text-center">Details</th>
-									<th class="text-center">Update Status</th>                          
+									<th class="text-center">Dosbing</th>                          
 	              </tr>
 	            </thead>
 	            <tbody>
-	              <?php $no = 1 ; foreach ($datas as $row) : ?>
+	              <?php $no = 1 ; foreach ($datas as $row) : 
+								if ($row->status != "Mengajukan Dosbing" and  $row->status != "Mendaftar")
+								{ ?>
+								
 	              <tr>
 									<th scope="row"><?php echo $no; ?></th>
 	                <td><?php echo $row->rmk ?></td>
@@ -78,7 +81,8 @@
 										</center>
 									</td>
 	              </tr>
-	              <?php $no++; endforeach; ?>
+								<?php }
+								 $no++; endforeach; ?>
 	            </tbody>            
 	          </table>
 		  </div>

@@ -65,7 +65,10 @@
 	              </tr>
 	            </thead>
 	            <tbody>
-	              <?php $no = 1 ; foreach ($datas as $row) : ?>
+	              <?php $no = 1 ; foreach ($datas as $row) : 
+								if ($row->status != "Mengajukan Dosbing" )
+								{ ?>
+
 	              <tr>
 									<th scope="row"><?php echo $no; ?></th>
 	                <td><?php echo $row->rmk ?></td>
@@ -89,8 +92,9 @@
 													<i class="glyphicon glyphicon-download"></i>
 											</a>
 									</td>
-	              </tr>
-	              <?php $no++; endforeach; ?>
+	              </tr>		
+								<?php }
+								$no++; endforeach; ?>
 	            </tbody>            
 	          </table>
 		  </div>
