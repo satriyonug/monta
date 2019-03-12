@@ -29,16 +29,98 @@
             $this->db->from('tb_proposal');
             $this->db->where('nrp', $id_login);
             $query = $this->db->get();
+            
+            foreach ($data as $status) : 
+            $stat = $status['status'];
+            endforeach;
+            
             if (empty($query->num_rows() > 0))
             {
-                ?><a href="<?php echo base_url('pengajuan/do_upload'); ?>" class="btn btn-info">Tambah Data</a>
-                <hr>
-                <h4>Belum Mengajukan Proposal Tugas Akhir</h4>
-                <?php
-            }
-            else { ?>
-                <br>
-       
+                $this->db->select("*");
+                $this->db->from('tb_judul');
+                $this->db->where('nrp_mhs', $id_login);
+                $jdl = $this->db->get();
+                if (empty($jdl->num_rows() > 0))
+                {
+                ?>
+                <h4>Silahkan Mengajukan Judul Tugas Akhir</h4>
+                <a href="<?php echo base_url('pengajuan/pengajuan_judul'); ?>" class="btn btn-info">Mengajukan Judul TA</a>
+                
+                <?php }
+                else
+                { 
+                    foreach ($judul_ta as $judul) : 
+                    $jdl_ta = $judul['status'];
+                    endforeach; ?>
+                    
+                    <h4><strong>Status Pengajuan Judul</strong></h4>
+                        <table class="table"  width="100%" cellspacing="0">
+                            <thead>
+                            <tr >
+                                <th>ID</th>
+                                <th>Judul TA</th>
+                                <th>Pembimbing</th>
+                                <?php 
+                                if ($judul['catatan'] != NULL )
+                                { ?>
+                                    <th>Catatan</th>
+                                <?php } ?>
+                                <th>Status</th>
+                                <?php 
+                                if ($judul['status'] == 0 )
+                                { ?>
+                                    <th class="text-center">Edit</th>
+                                <?php } ?>
+                                <th>Proposal</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($judul_ta as $jdlta) : ?>
+                            <tr>
+                                <td><?php echo $jdlta['id'] ?></td>
+                                <td><?php echo $jdlta['judul_ta'] ?></td>
+                                <td><?php echo $jdlta['pembimbing_ta'] ?></td>
+                                <?php 
+                                if ($judul['catatan'] != NULL )
+                                { ?>
+                                    <td><?php echo $jdlta['catatan'] ?></td>
+                                <?php } ?>
+                                
+                                <td><?php echo $jdlta['status'] ?></td>
+                            
+                                <?php  
+                                if ($jdlta['status'] == 0 )
+                                { ?>
+                                    <td>
+                                        <a href="<?php echo base_url('pengajuan/edit_judul/'.$jdlta['id']); ?>" class="btn btn-xs btn-warning">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                    </td>
+                                <?php }?>
+                                <td>Belum Mengajukan Proposal</td>
+                            </tr>
+                            <?php endforeach; ?>
+                            </tbody>            
+                        </table>
+
+                    <?php if ($jdl_ta == 0)
+                    { ?>
+                        <h6>* Menunggu konfirmasi dari dosen pembimbing. Silahkan menghubungi dosen pembimbing.</h6>
+                    <?php } 
+                    elseif ($jdl_ta == 1)
+                    {
+                        ?>
+                        <div class="col-sm-4">
+                            <hr>
+                            <h4>Belum Mengajukan Proposal Tugas Akhir</h4>
+                            <a href="<?php echo base_url('pengajuan/do_upload'); ?>" class="btn btn-info">Megajukan Proposal</a>
+                        </div>
+                        <?php
+                    }
+                }
+            } 
+            else 
+            { ?>
                 <table class="table"  width="100%" cellspacing="0">
                     <thead>
                     <tr >
@@ -69,7 +151,7 @@
                             <td><?php echo $value['revisi'] ?></td>
                         <?php }?>
                         <?php  
-                        if ($value['status'] == "Menunggu Sidang Proposal" or $value['status'] == "Mengajukan Dosbing" or  $value['status'] == "Mendaftar" or $value['status'] == "Revisi")
+                        if ($value['status'] == "Menunggu Sidang Proposal"  or  $value['status'] == "Mendaftar" or $value['status'] == "Revisi")
                         { ?>
                             <td>
                                 <a href="<?php echo base_url('pengajuan/edit/'.$value['id_proposal']); ?>" class="btn btn-xs btn-warning">

@@ -64,7 +64,7 @@
 	            </thead>
 	            <tbody>
 	              <?php $no = 1 ; foreach ($datas as $row) : 
-								if ($row->status != "Mengajukan Dosbing" and  $row->status != "Mendaftar")
+								if ($row->status != "Mengajukan Judul" and  $row->status != "Mendaftar")
 								{ ?>
 								
 	              <tr>

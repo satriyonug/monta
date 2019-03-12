@@ -71,6 +71,15 @@ class Proposal_model extends CI_Model {
 		return $res2;
 	}
 
+	public function get_search_judul($judul)
+{
+      $this->db->select('*');
+      $this->db->where('id',$judul);
+      $res2 = $this->db->get('tb_judul');
+      return $res2;
+}
+
+
 	function getRows($params = array()){
         $this->db->select('proposal_ta');
         $this->db->from('tb_proposal');

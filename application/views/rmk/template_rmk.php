@@ -103,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // Start AJAX function
                 $.ajax({
                 	// Path for controller function which fetches selected phone data
-                    url: "<?php echo base_url() ?>Rmk/get_proposal_result",
+                    url: "<?php echo base_url() ?>Proposal/get_proposal_result",
                     // Method of getting data
                     method: "POST",
                     // Data is sent to the server

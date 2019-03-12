@@ -15,6 +15,7 @@ class Proposal extends CI_Controller {
 		$data['datas'] = $this->Proposal_model->get_proposal();
 		$this->load->view('dashboard_view',$data);
 	}
+	
 	public function get_proposal_result()
 	{
 
@@ -45,6 +46,10 @@ class Proposal extends CI_Controller {
 							<tr>
 								<td><b>Judul</b></td>
 								<td>'.$row['judul_ta'].'</td>						    		
+							</tr>
+							<tr>
+								<td><b>Abstrak</b></td>
+								<td>'.$row['abstrak_ta'].'</td>						    		
 							</tr>						    			
 							<tr>
 								<td><b>Pembimbing 1</b></td>

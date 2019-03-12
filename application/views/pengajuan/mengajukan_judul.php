@@ -8,7 +8,7 @@
   <?php $this->load->view('alert/berhasil_simpan'); ?>
  <?php } ?>
 
-<?php echo form_open_multipart('pengajuan/do_upload', 'class="form-horizontal"'); ?>
+<?php echo form_open_multipart('pengajuan/pengajuan_judul', 'class="form-horizontal"'); ?>
   <form action="" method="">
   <div class="form-group">
       <label class="col-sm-2">Nama</label>
@@ -26,9 +26,7 @@
       <label class="col-sm-2">RMK</label>
       <div class="col-sm-4">
         <select name="rmk" class="form-control" required="">
-          <?php  foreach ($judul_ta as $judul) : ?>
-            <option value="<?php echo $judul['rmk'];?>"><?php echo $judul['rmk'];?></option>
-          <?php  endforeach; ?>
+          <option></option>
           <option value="RPL">RPL</option>
           <option value="KBJ">KBJ</option>
           <option value="KCV">KCV</option>
@@ -43,61 +41,24 @@
   <div class="form-group">
       <label class="col-sm-2">Judul TA</label>
       <div class="col-sm-4">
-        <?php  foreach ($judul_ta as $judul) : ?>
-          <input type="text" name="judul_ta" value="<?php echo $judul['judul_ta'];?>" class="form-control" placeholder="Judul Tugas Akhir" required="">
-        <?php  endforeach; ?>
+        <input type="text" name="judul_ta" class="form-control" placeholder="Judul Tugas Akhir" required="">
       </div>
   </div>
   <div class="form-group">
       <label class="col-sm-2">Abstrak</label>
       <div class="col-sm-4">
-        <?php  foreach ($judul_ta as $judul) : ?>
-          <textarea name="abstrak_ta" class="form-control" placeholder="Abstrak Tugas Akhir" required="">
-          <?php echo ($judul['abstrak']); ?>
-          </textarea>
-        <?php  endforeach; ?>
-      </div>
-  </div>
-  <div class="form-group">
-      <label class="col-sm-2">Kata Kunci</label>
-      <div class="col-sm-4">
-        <input type="text" name="kata_kunci" class="form-control" placeholder="Kata Kunci Tugas Akhir" required="">
+        <textarea name="abstrak_ta" class="form-control" placeholder="Abstrak Tugas Akhir" required=""></textarea>
       </div>
   </div>
   <div class="form-group">
       <label class="col-sm-2">Pembimbing 1</label>
       <div class="col-sm-4">
         <select name="pembimbing1" class="form-control" required="">
-          <?php  foreach ($judul_ta as $judul) : ?>
-            <option value="<?php echo $judul['pembimbing_ta'];?>"><?php echo $judul['pembimbing_ta'];?></option>
-          <?php  endforeach; ?>
+          <option></option>
           <?php  foreach ($data as $value) : ?>
           <option value="<?php echo $value['nama_dosen']."+".$value['nip']; ?>"><?php echo "--  "  .$value['nama_dosen']; ?></option>
           <?php endforeach; ?>
         </select>
-      </div>
-  </div>
-  <div class="form-group">
-      <label class="col-sm-2">Pembimbing 2</label>
-      <div class="col-sm-4">
-        <select name="pembimbing2" class="form-control">
-          <option></option>
-          <?php foreach ($data as $value) : ?>
-          <option value="<?php echo $value['nama_dosen']."+".$value['nip']; ?>"><?php echo "--  "  .$value['nama_dosen']; ?></option>
-          <?php endforeach; ?>
-        </select>
-      </div>
-  </div>
-  <div class="form-group">
-      <label class="col-sm-2">Proposal TA</label>
-      <div class="col-sm-4">
-        <input type="file"  class="form-control-file" name="proposal_ta" class="form-control" required="">
-      </div>
-  </div>
-  <div class="form-group">
-      <label class="col-sm-2">Referensi TA</label>
-      <div class="col-sm-4">
-        <input type="file" class="form-control-file" name="referensi_ta" class="form-control" >
       </div>
   </div>
   <div class="form-group">
