@@ -60,7 +60,7 @@ class Pengajuan extends CI_Controller {
             
 
             $config['upload_path']   = './upload/proposal'; 
-            $config['allowed_types'] = 'gif|jpg|png|pdf|csv'; 
+            $config['allowed_types'] = 'gif|jpg|png|pdf|csv|zip'; 
             
             $config['max_size']      = 0; 
             //  $config['max_width']     = 1024; 
@@ -289,7 +289,5 @@ class Pengajuan extends CI_Controller {
             $this->session->set_flashdata('berhasil_hapus', 'sukses');
             redirect(base_url('pengajuan'));
         }
-    } 
-
-    
+    }
 }

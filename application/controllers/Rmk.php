@@ -15,10 +15,10 @@ class Rmk extends CI_Controller {
   }
  }
 
-    public function index()
+    public function pengajuan_ta()
     {
         $data['konten'] = "rmk/dashboard_rmk";
-        $data['title']  = "Tugas Akhir";
+        $data['title']  = "Pengajuan Tugas Akhir";
 		$data['web'] = $this->MWeb->tampil()->row();
 		if ($this->input->post('submit')) {
 			$rmk = $this->input->post('rmk');
@@ -33,6 +33,31 @@ class Rmk extends CI_Controller {
 		}
 		else {
 			$data['datas'] = $this->Proposal_model->get_proposal();
+			$data['search'] = "ALL";
+		}
+		// $data['datados'] = $this->MDosen->tampil()->result();
+        $this->load->view('rmk/template_rmk', $data);
+	}
+	
+	public function sidang_ta()
+    {
+        $data['konten'] = "rmk/sidang_ta";
+        $data['title']  = "Pengajuan Sidang Tugas Akhir";
+		$data['web'] = $this->MWeb->tampil()->row();
+		
+		if ($this->input->post('submit')) {
+			$rmk = $this->input->post('rmk');
+			if ($rmk == "ALL") {
+				$data['datas'] = $this->MPengajuan->tampil_sidang();
+			}
+			else{
+				
+				$data['datas'] = $this->MPengajuan->get_sidang_rmk($rmk);
+			}
+			$data['search'] = $rmk = $this->input->post('rmk');
+		}
+		else {
+			$data['datas'] = $this->MPengajuan->tampil_sidang();
 			$data['search'] = "ALL";
 		}
 		// $data['datados'] = $this->MDosen->tampil()->result();
@@ -53,9 +78,28 @@ class Rmk extends CI_Controller {
 		$this->db->where('id_proposal', $_POST['id_proposal']);
 		$this->db->update('tb_proposal',$data);
 		$this->session->set_flashdata('berhasil_edit',"sukses");
-		redirect(base_url('rmk'));
+		redirect(base_url('rmk/pengajuan_ta'));
  
 	}
+
+	public function edit_sidang($id)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d H:i:s');
+        
+        $objek = array(
+                
+            'status' => "Maju Sidang",
+            'updated_at' => $date
+             );
+
+        $this->db->where('id_proposal', $id);
+        $query = $this->db->update('tb_proposal', $objek);
+        if ($query) {
+            $this->session->set_flashdata('berhasil_edit', 'sukses');
+            redirect(base_url('rmk/pengjuan_ta'));
+        }
+    }
 
 	public function revisi_proposal()
 	{
@@ -69,7 +113,7 @@ class Rmk extends CI_Controller {
 		$this->db->where('id_proposal', $_POST['id_proposal']);
 		$this->db->update('tb_proposal',$data);
 		$this->session->set_flashdata('berhasil_edit',"sukses");
-		redirect(base_url('rmk'));
+		redirect(base_url('rmk/pengajuan_ta'));
  
 	}
 } 

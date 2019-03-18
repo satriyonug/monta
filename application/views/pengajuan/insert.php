@@ -69,7 +69,7 @@
       <div class="col-sm-4">
         <select name="pembimbing1" class="form-control" required="">
           <?php  foreach ($judul_ta as $judul) : ?>
-            <option value="<?php echo $judul['pembimbing_ta'];?>"><?php echo $judul['pembimbing_ta'];?></option>
+            <option value="<?php echo $judul['pembimbing_ta']."+".$judul['nip'];?>"><?php echo $judul['pembimbing_ta'];?></option>
           <?php  endforeach; ?>
           <?php  foreach ($data as $value) : ?>
           <option value="<?php echo $value['nama_dosen']."+".$value['nip']; ?>"><?php echo "--  "  .$value['nama_dosen']; ?></option>

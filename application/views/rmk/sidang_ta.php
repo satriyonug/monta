@@ -18,10 +18,10 @@
 		
 		<div class="panel panel-success">
 		  <div class="panel-heading">
-		    <h3 class="panel-title"><i class="fa fa-book" aria-hidden="true"></i> Tugas Akhir</h3>
+		    <h3 class="panel-title"><i class="fa fa-book" aria-hidden="true"></i> <?php echo $title ?></h3>
 		  </div>
 		  <div class="panel-body">
-				<?php echo form_open(base_url('rmk/pengajuan_ta'), 'class="form-horizontal"' ); ?>
+				<?php echo form_open(base_url('rmk/sidang_ta'), 'class="form-horizontal"' ); ?>
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="form-group">
@@ -54,46 +54,44 @@
 	              <tr >
 									<th>No</th>
 									<th>RMK</th>
-									<th>Status</th>
 	                <th>Nama</th>
 	                <th>NRP</th>
 	                <th>Judul TA</th>
-									<th class="text-center">Details</th>
-									<th class="text-center">Update Status</th>
-									<th class="text-center">Revisi</th>
+									<th class="text-center">Verifikasi</th>
 									<th class="text-center">Download</th>                          
 	              </tr>
 	            </thead>
 	            <tbody>
-	              <?php $no = 1 ; foreach ($datas as $row) : 
-								if ($row->status != "Mengajukan Dosbing" )
-								{ ?>
+	              <?php $no = 1 ; foreach ($datas as $row) : ?>
 
 	              <tr>
 									<th scope="row"><?php echo $no; ?></th>
 	                <td><?php echo $row->rmk ?></td>
-									<td><?php echo $row->status ?></td>
-									<td><?php echo $row->nama_mhs ?></td>
+									<td><?php echo $row->nama ?></td>
 	                <td><?php echo $row->nrp ?></td>
 	                <td><?php echo $row->judul_ta ?></td>
-									<td><center><input type="button" class="btn btn-warning btn-sm view_data" value="Details" id="<?php echo $row->id_proposal; ?>"></center></td>
+									
 									<td>
 										<center>
-											<a data-toggle="modal" data-target="#modal-edit<?=$row->id_proposal;?>" class="btn btn-success btn-circle" data-popup="tooltip" data-placement="top" title="Edit Data"><i class="fa fa-pencil"></i></a>
-										</center>
-									</td>
-									<td>
-										<center>
-											<a data-toggle="modal" data-target="#modal-revisi<?=$row->id_proposal;?>" class="btn btn-warning btn-circle" data-popup="tooltip" data-placement="top" title="Revisi"><i class="fa fa-pencil"></i></a>
+										<?php 
+											if($row->status == "Maju Sidang") { ?>
+											<h5>Sudah Diverifikasi</h5>
+											<?php } 
+											else { ?>
+												<a href="<?php echo base_url('rmk/edit_sidang/'.$row->id_ta); ?>" 
+													onclick="return confirm('Apakah anda yakin ingin mengkonfirmasi data ini ?')" class="btn btn-circle btn-danger">
+													<i class="glyphicon glyphicon-check"></i>
+												</a>
+											<?php } ?>
 										</center>
 									</td>
 									<td class="text-center">
-											<a href="<?php echo base_url('proposal/download/'.$row->id_proposal); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-circle btn-success">
+											<a href="<?php echo base_url('proposal/download/'.$row->id); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-circle btn-success">
 													<i class="glyphicon glyphicon-download"></i>
 											</a>
 									</td>
 	              </tr>		
-								<?php }
+								<?php 
 								$no++; endforeach; ?>
 	            </tbody>            
 	          </table>
@@ -103,9 +101,9 @@
 
 <?php $no=0; foreach($datas as $row): $no++; ?>
 <div class="row">
-  <div id="modal-edit<?=$row->id_proposal;?>" class="modal fade">
+  <div id="modal-edit<?=$row->id;?>" class="modal fade">
     <div class="modal-dialog">
-      <form action="<?php echo site_url('Rmk/edit_status_proposal'); ?>" method="post">
+      <form action="<?php echo site_url('Rmk/edit_sidang'); ?>" method="post">
       <div class="modal-content">
         <div class="modal-header bg-primary">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -113,23 +111,9 @@
         </div>
         <div class="modal-body">
 
-          <input type="hidden" readonly value="<?=$row->id_proposal;?>" name="id_proposal" class="form-control" >
+          <input type="hidden" readonly value="<?=$row->id;?>" name="id_proposal" class="form-control" >
 
-          <div class="form-group">
-            <label class='col-md-3'>Status</label>
-            <div class='col-md-9'>
-						<select name="status" class="form-control" required="">
-							<option value="<?php echo $row->status; ?>"> -- <?php echo $row->status; ?> -- </option>
-							<option value="Menunggu Sidang Proposal">Menunggu Sidang Proposal</option>
-							<option value="Revisi">Revisi</option>
-							<option value="OK">OK</option>
-							<option value="Proposal Di Tolak">Proposal Di Tolak</option>
-							<option value="Batal">Batal</option>
-							<option value="Maju Sidang">Maju Sidang</option>
-							<option value="Lulus">Lulus</option>
-							<option value="Tidak Lulus">Tidak Lulus</option>
-						</select>
-						</div>
+          
           </div>
           <br>
         </div>
@@ -145,7 +129,7 @@
 
 <?php $no=0; foreach($datas as $row): $no++; ?>
 <div class="row">
-  <div id="modal-revisi<?=$row->id_proposal;?>" class="modal fade">
+  <div id="modal-revisi<?=$row->id;?>" class="modal fade">
     <div class="modal-dialog">
       <form action="<?php echo site_url('Rmk/revisi_proposal'); ?>" method="post">
       <div class="modal-content">
@@ -155,7 +139,7 @@
         </div>
         <div class="modal-body">
 
-          <input type="hidden" readonly value="<?=$row->id_proposal;?>" name="id_proposal" class="form-control" >
+          <input type="hidden" readonly value="<?=$row->id;?>" name="id_proposal" class="form-control" >
 
           <div class="form-group">
             <label class='col-md-3'>Revisi</label>

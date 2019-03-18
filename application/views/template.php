@@ -45,6 +45,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<li class="<?php if ($this->uri->segment('1') == 'pengajuan') {echo 'active';} ?>">
 								<a href="<?php echo base_url('pengajuan'); ?>">Proposal TA</a>
 							</li>
+							<li class="<?php if ($this->uri->segment('1') == 'sidang') {echo 'active';} ?>">
+								<a href="<?php echo base_url('sidang'); ?>">Sidang TA</a>
+							</li>
 							<li><a href="<?php echo base_url('logout'); ?>">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
