@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="icon-bar"></span>
           </button>
           <!-- <img style="width:5%; length:10%" src="assets/images/its.png" alt=""> -->
-					<a class="navbar-brand" href="<?php echo base_url('rmk'); ?>"><?php echo $web->nama_web; ?></a>
+					<a class="navbar-brand" href="<?php echo base_url('rmk/pengajuan_ta'); ?>"><?php echo $web->nama_web; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
