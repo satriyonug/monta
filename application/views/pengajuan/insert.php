@@ -44,7 +44,9 @@
       <label class="col-sm-2">Judul TA</label>
       <div class="col-sm-4">
         <?php  foreach ($judul_ta as $judul) : ?>
-          <input type="text" name="judul_ta" value="<?php echo $judul['judul_ta'];?>" class="form-control" placeholder="Judul Tugas Akhir" required="">
+          <textarea name="judul_ta" class="form-control" placeholder="Judul Tugas Akhir" required="">
+          <?php echo htmlspecialchars($judul['judul_ta']); ?>
+          </textarea>
         <?php  endforeach; ?>
       </div>
   </div>
@@ -52,8 +54,8 @@
       <label class="col-sm-2">Abstrak</label>
       <div class="col-sm-4">
         <?php  foreach ($judul_ta as $judul) : ?>
-          <textarea name="abstrak_ta" class="form-control" placeholder="Abstrak Tugas Akhir" required="">
-          <?php echo ($judul['abstrak']); ?>
+          <textarea name="abstrak_ta" class="form-control" rows=5 placeholder="Abstrak Tugas Akhir" required="">
+          <?php echo htmlspecialchars($judul['abstrak']); ?>
           </textarea>
         <?php  endforeach; ?>
       </div>

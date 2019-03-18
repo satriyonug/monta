@@ -23,7 +23,7 @@ class Sidang extends CI_Controller {
     {
         $data['title']    = "Pengajuan Sidang Tugas Akhir";
         $id_login   = $this->session->userdata("id_user");
-        $this->db->select("rmk, id_proposal, nama_mhs, nrp, judul_ta, pembimbing1_ta, nip1, pembimbing2_ta, nip2");
+        $this->db->select("rmk, id_proposal, nama_mhs, nrp, judul_ta, pembimbing1_ta, nip1, pembimbing2_ta, nip2, revisi");
         $this->db->from('tb_proposal');
         $this->db->where('nrp', $id_login);
         $query = $this->db->get();
@@ -92,9 +92,16 @@ class Sidang extends CI_Controller {
                    'created_at' => $date
                    
                     );
-   
+               
+               $status = array(
+                   'status' => "Menunggu Verifikasi Pengajuan Sidang"
+                );
+
+               $this->db->where('id_proposal', $d);
+               $this->db->update('tb_proposal', $status);
+               
                $query = $this->MPengajuan->sidang($objek);
-                
+ 
                if ($query) {
                    $this->session->set_flashdata('berhasil_simpan', 'sukses');
                    redirect(base_url('sidang'));

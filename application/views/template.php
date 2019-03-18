@@ -45,12 +45,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<li class="<?php if ($this->uri->segment('1') == 'pengajuan') {echo 'active';} ?>">
 								<a href="<?php echo base_url('pengajuan'); ?>">Proposal TA</a>
 							</li>
-							<?php $this->db->select("*");
+							<?php 
+								$this->db->select("*");
                 $this->db->from('tb_proposal');
 								$this->db->where('nrp', $id_login);
-								$this->db->where('status', 'OK');
-                $jdl = $this->db->get();
-                if (!empty($jdl->num_rows() > 0))
+								$this->db->where('status', "OK");
+								$jdl = $this->db->get();
+								
+								$this->db->select("*");
+                $this->db->from('tb_sidang');
+								$this->db->where('nrp', $id_login);
+                $sdg = $this->db->get();
+                if (!empty($jdl->num_rows() > 0) OR !empty($sdg->num_rows() > 0))
                 {
               ?>
 									<li class="<?php if ($this->uri->segment('1') == 'sidang') {echo 'active';} ?>">

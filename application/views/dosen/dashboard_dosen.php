@@ -41,7 +41,14 @@
 	              <tr>
                   <th scope="row"><?php echo $no; ?></th>
 	                <td><?php echo $row['rmk'] ?></td>
-									<td><?php echo $row['status'] ?></td>
+									<?php if($row['status'] == 0)
+									{ ?>
+										<td>Belum Disetujui</td>
+									<?php } 
+									else
+									{ ?>
+										<td>Disetujui</td>
+									<?php } ?>
 									<td><?php echo $row['nama_mhs'] ?></td>
 	                <td><?php echo $row['nrp_mhs'] ?></td>
 	                <td><?php echo $row['judul_ta'] ?></td>

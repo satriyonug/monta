@@ -131,6 +131,24 @@
 						</select>
 						</div>
           </div>
+					<br><br>
+					<div class="form-group">
+            <label class='col-md-3'>Tanggal Sidang Proposal</label>
+            <div class='col-md-9'>
+							<div class="form-group">
+									<div class='input-group date' id='datetimepicker1'>
+									<?php if($row->tgl_sidang_proposal != NULL) { ?>
+										<input type='date' name="tgl_sidang_proposal" value="<?php echo $row->tgl_sidang_proposal?>" class="form-control" />
+										<?php } else { ?>
+											<input type='date' name="tgl_sidang_proposal" class="form-control" />
+										<?php } ?>
+											<span class="input-group-addon">
+													<span class="glyphicon glyphicon-calendar"></span>
+											</span>
+									</div>
+							</div>
+						</div>
+          </div>
           <br>
         </div>
           <div class="modal-footer">

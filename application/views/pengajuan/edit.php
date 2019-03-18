@@ -35,13 +35,15 @@
  <div class="form-group">
   <label class="col-sm-2">Judul TA</label>
   <div class="col-sm-4">
-   <input type="text" name="judul_ta" class="form-control" placeholder="Judul Tugas Akhir" value="<?php echo $editdata->judul_ta; ?>" required="">
+  <textarea name="judul_ta" class="form-control" placeholder="Judul Tugas Akhir" required="">
+  <?php echo htmlspecialchars($editdata->judul_ta); ?>
+  </textarea>
   </div>
  </div>
  <div class="form-group">
   <label class="col-sm-2">Abstrak</label>
   <div class="col-sm-4">
-   <textarea name="abstrak_ta" class="form-control" placeholder="Abstrak Tugas Akhir" required=""><?php echo htmlspecialchars($editdata->abstrak_ta); ?></textarea>
+   <textarea name="abstrak_ta" class="form-control" rows=5 placeholder="Abstrak Tugas Akhir" required=""><?php echo htmlspecialchars($editdata->abstrak_ta); ?></textarea>
   </div>
  </div>
  <div class="form-group">

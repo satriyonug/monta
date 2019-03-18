@@ -54,7 +54,9 @@ if(empty($sidang)) { ?>
         <label class="col-sm-2">Judul TA</label>
         <div class="col-sm-4">
           <?php  foreach ($data as $judul) : ?>
-            <input type="text" name="judul_ta" value="<?php echo $judul['judul_ta'];?>" class="form-control" placeholder="Judul Tugas Akhir" required="">
+          <textarea name="judul_ta" class="form-control" placeholder="Judul Tugas Akhir" required="">
+          <?php echo htmlspecialchars($judul['judul_ta']); ?>
+          </textarea>
           <?php  endforeach; ?>
         </div>
     </div>
@@ -98,5 +100,41 @@ if(empty($sidang)) { ?>
 <?php }
 else { ?>
   <h4> Mahasiswa Telah Mengajukan Sidang Tugas Akhir </h4>
-  <h5> Anda dapat melihat status tugas akhir pada link berikut :  <a href="<?php echo base_url('pengajuan'); ?>">Status Tugas Akhir</a> </h5>
+  <br>
+  <table class="table"  width="100%" cellspacing="0">
+      <thead>
+      <tr >
+          <th>ID</th>
+          <th>Judul TA</th>
+          <th>Pembimbing1</th>
+          <th>Pembimbing2</th>
+          <th>Status</th>
+          <?php foreach ($sidang as $tgl) : 
+          if ($tgl->status == "Maju Sidang" )
+          { ?>
+              <th>Tanggal Sidang</th>
+              <th>Dosen Penguji 1</th>
+              <th>Dosen Penguji 2</th>
+          <?php } endforeach ?>
+          
+      </tr>
+      </thead>
+      <tbody>
+      <?php $no = 1 ; foreach ($sidang as $value) : ?>
+      <tr>
+          <td><?php echo $value->id_ta; ?></td>
+          <td><?php echo $value->judul_ta ?></td>
+          <td><?php echo $value->pembimbing1 ?></td>
+          <td><?php echo $value->pembimbing2 ?></td>
+          <td><?php echo $value->status ?></td>
+          <?php  if ($value->status == "Maju Sidang" )
+          { ?>
+              <td><?php echo $value->tgl_sidang_ta?></td>
+              <td><?php echo $value->dosen_penguji1?></td>
+              <td><?php echo $value->dosen_penguji2?></td>
+          <?php } ?>
+      </tr>
+      <?php $no++; endforeach; ?>
+      </tbody>            
+  </table>
 <?php } ?>

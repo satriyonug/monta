@@ -44,6 +44,7 @@ class Rmk extends CI_Controller {
         $data['konten'] = "rmk/sidang_ta";
         $data['title']  = "Pengajuan Sidang Tugas Akhir";
 		$data['web'] = $this->MWeb->tampil()->row();
+		$data['dosen'] = $this->MDosen->tampil()->result_array();
 		
 		if ($this->input->post('submit')) {
 			$rmk = $this->input->post('rmk');
@@ -72,7 +73,8 @@ class Rmk extends CI_Controller {
         $date = date('Y-m-d H:i:s');
 		
 		$data=array(
-			"status"=>$_POST['status'],
+			'status'=>$_POST['status'],
+			'tgl_sidang_proposal' => $_POST['tgl_sidang_proposal'],
 			'updated_at' => $date
 		);
 		$this->db->where('id_proposal', $_POST['id_proposal']);
@@ -86,18 +88,37 @@ class Rmk extends CI_Controller {
     {
         date_default_timezone_set('Asia/Jakarta');
         $date = date('Y-m-d H:i:s');
-        
-        $objek = array(
-                
-            'status' => "Maju Sidang",
-            'updated_at' => $date
+		
+		$objek = array(
+			'status' => "Maju Sidang",
+			'updated_at' => $date
              );
 
         $this->db->where('id_proposal', $id);
-        $query = $this->db->update('tb_proposal', $objek);
-        if ($query) {
+		$query = $this->db->update('tb_proposal', $objek);
+		
+		if ($query) {
             $this->session->set_flashdata('berhasil_edit', 'sukses');
-            redirect(base_url('rmk/pengjuan_ta'));
+            redirect(base_url('rmk/sidang_ta'));
+        }
+	}
+	
+	public function edit_tanggal_sidang()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d H:i:s');
+		
+		$sidang = array(
+			'dosen_penguji1' => $_POST['penguji1'],
+			'dosen_penguji2' => $_POST['penguji2'],
+			'tgl_sidang_ta' => $_POST['tgl_sidang_ta']
+		);
+		
+		$this->db->where('id_ta', $_POST['id']);
+        $query_sidang = $this->db->update('tb_sidang', $sidang);
+        if ($query_sidang) {
+            $this->session->set_flashdata('berhasil_edit', 'sukses');
+            redirect(base_url('rmk/sidang_ta'));
         }
     }
 

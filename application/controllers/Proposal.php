@@ -62,7 +62,7 @@ class Proposal extends CI_Controller {
 							<tr>
 								<td><b>Status</b></td>
 								<td>'.$row["status"].'</td>						    		
-							</tr>						    								    		
+							</tr>		    								    		
 						</table>
 					';
 

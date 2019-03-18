@@ -60,11 +60,6 @@
                                 <th>ID</th>
                                 <th>Judul TA</th>
                                 <th>Pembimbing</th>
-                                <?php 
-                                if ($judul['catatan'] != NULL )
-                                { ?>
-                                    <th>Catatan</th>
-                                <?php } ?>
                                 <th>Status</th>
                                 <?php 
                                 if ($judul['status'] == 0 )
@@ -80,14 +75,15 @@
                                 <td><?php echo $jdlta['id'] ?></td>
                                 <td><?php echo $jdlta['judul_ta'] ?></td>
                                 <td><?php echo $jdlta['pembimbing_ta'] ?></td>
-                                <?php 
-                                if ($judul['catatan'] != NULL )
-                                { ?>
-                                    <td><?php echo $jdlta['catatan'] ?></td>
-                                <?php } ?>
                                 
-                                <td><?php echo $jdlta['status'] ?></td>
-                            
+                                <?php if($jdlta['status'] == 0)
+                                { ?>
+                                    <td>Belum Disetujui</td>
+                                <?php }
+                                else
+                                { ?>
+                                    <td>Disetujui</td>
+                                <?php } ?>
                                 <?php  
                                 if ($jdlta['status'] == 0 )
                                 { ?>
@@ -106,6 +102,14 @@
                     <?php if ($jdl_ta == 0)
                     { ?>
                         <h6>* Menunggu konfirmasi dari dosen pembimbing. Silahkan menghubungi dosen pembimbing.</h6>
+                        <?php foreach ($judul_ta as $revisi) : 
+                        if ($revisi['catatan'] != NULL)
+                        { ?>
+                            <div class="form-group">
+                                <label for="comment">Revisi :</label>
+                                <textarea class="form-control" rows="5" id="comment"><?php echo htmlspecialchars($revisi['catatan']); ?></textarea>
+                            </div> 
+                        <?php } endforeach; ?>
                     <?php } 
                     elseif ($jdl_ta == 1)
                     {
@@ -129,10 +133,10 @@
                         <th>Pembimbing1</th>
                         <th>Pembimbing2</th>
                         <th>Status</th>
-                        <?php foreach ($data as $revisi) : 
-                        if ($revisi['revisi'] != NULL )
+                        <?php foreach ($data as $tgl) : 
+                        if ($tgl['status'] == "Menunggu Sidang Proposal" )
                         { ?>
-                            <th>Revisi</th>
+                            <th>Tanggal Sidang Proposal</th>
                         <?php } endforeach ?>
                         <?php foreach ($data as $value) :
                         if ($value['status'] == "Menunggu Sidang Proposal"  or  $value['status'] == "Mendaftar" or $value['status'] == "Revisi")
@@ -149,11 +153,11 @@
                         <td><?php echo $value['pembimbing1_ta'] ?></td>
                         <td><?php echo $value['pembimbing2_ta'] ?></td>
                         <td><?php echo $value['status'] ?></td>
-                        <?php  
-                        if ($value['revisi'] != NULL )
+                        <?php  if ($value['status'] == "Menunggu Sidang Proposal" )
                         { ?>
-                            <td><?php echo $value['revisi'] ?></td>
-                        <?php }?>
+                            <td><?php echo $value['tgl_sidang_proposal']?></td>
+                        <?php } ?>
+                        
                         <?php  
                         if ($value['status'] == "Menunggu Sidang Proposal"  or  $value['status'] == "Mendaftar" or $value['status'] == "Revisi")
                         { ?>
@@ -164,10 +168,21 @@
                             </td>
                         <?php }?>
                         
+                        
+                        
                     </tr>
                     <?php $no++; endforeach; ?>
                     </tbody>            
                 </table>
+                <?php foreach ($data as $revisi) : 
+                if ($revisi['revisi'] != NULL)
+                { ?>
+                    <div class="form-group">
+                        <label for="comment">Revisi :</label>
+                        <textarea class="form-control" rows="5" id="comment"><?php echo htmlspecialchars($revisi['revisi']); ?></textarea>
+                    </div> 
+                <?php } endforeach ?>
+                
             <?php }
         ?>
         
