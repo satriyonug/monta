@@ -47,7 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</li>
 							<?php $this->db->select("*");
                 $this->db->from('tb_proposal');
-                $this->db->where('nrp', $id_login);
+								$this->db->where('nrp', $id_login);
+								$this->db->where('status', 'OK');
                 $jdl = $this->db->get();
                 if (!empty($jdl->num_rows() > 0))
                 {
