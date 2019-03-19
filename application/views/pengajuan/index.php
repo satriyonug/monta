@@ -134,7 +134,11 @@
                         { ?>
                             <th>Revisi</th>
                         <?php } endforeach ?>
-                        <th class="text-center">Edit</th>
+                        <?php foreach ($data as $value) :
+                        if ($value['status'] == "Menunggu Sidang Proposal"  or  $value['status'] == "Mendaftar" or $value['status'] == "Revisi")
+                        { ?>
+                            <th class="text-center">Edit</th>
+                        <?php } endforeach ?>
                     </tr>
                     </thead>
                     <tbody>

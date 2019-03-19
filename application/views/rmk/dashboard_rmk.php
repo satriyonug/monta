@@ -18,7 +18,7 @@
 		
 		<div class="panel panel-success">
 		  <div class="panel-heading">
-		    <h3 class="panel-title"><i class="fa fa-book" aria-hidden="true"></i> Tugas Akhir</h3>
+		    <h3 class="panel-title"><i class="fa fa-book" aria-hidden="true"></i> <?php echo $title ?></h3>
 		  </div>
 		  <div class="panel-body">
 				<?php echo form_open(base_url('rmk/pengajuan_ta'), 'class="form-horizontal"' ); ?>

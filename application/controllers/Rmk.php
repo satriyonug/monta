@@ -116,4 +116,33 @@ class Rmk extends CI_Controller {
 		redirect(base_url('rmk/pengajuan_ta'));
  
 	}
+
+	public function download_berkas($id)
+	{
+		
+		if(ini_get('zlib.output_compression')) 
+		{ 
+			ini_set('zlib.output_compression', 'Off'); 
+		}
+			$this->load->helper('file');
+
+			$fileInfo = $this->Proposal_model->getRowsSidang(array('id' => $id));
+			$fileoriginalname = $fileInfo['berkas'];
+
+			$Path    =   "upload/sidang/".$fileInfo['berkas'];
+			$mime = get_mime_by_extension($Path);
+
+			header('Pragma: public');     // required
+			header('Expires: 0');         // no cache
+			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+			header('Last-Modified: '.gmdate ('D, d M Y H:i:s', filemtime ($Path)).' GMT');
+			header('Cache-Control: private',false);
+			header('Content-Type: '.$mime);  
+			header('Content-Disposition: attachment; filename="'.$fileoriginalname.'"');  // Add the file name
+			header('Content-Transfer-Encoding: binary');
+			header('Content-Length: '.filesize($Path)); 
+			header('Connection: close');
+			readfile($Path); 
+			exit();
+	}
 } 

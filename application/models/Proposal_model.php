@@ -89,4 +89,14 @@ class Proposal_model extends CI_Model {
 		$result = ($query->num_rows() > 0)?$query->row_array():FALSE;
         return $result;
 	}
+
+	function getRowsSidang($params = array()){
+        $this->db->select('berkas');
+        $this->db->from('tb_sidang');
+		$this->db->where('id_ta',$params['id']);
+		//get records
+		$query = $this->db->get();
+		$result = ($query->num_rows() > 0)?$query->row_array():FALSE;
+        return $result;
+	}
 }

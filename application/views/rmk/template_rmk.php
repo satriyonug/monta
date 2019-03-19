@@ -38,10 +38,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							$id_login   = $this->session->userdata("id_user");
 									$datalogin  = $this->db->get_where("tb_user", array('id_user'=> $id_login))->row();
 							?>
-							<li class="<?php if ($this->uri->segment('1') == 'rmk/pengajuan_ta') {echo 'active';} ?>">
+							<li class="<?php if ($this->uri->segment('2') == 'pengajuan_ta') {echo 'active';} ?>">
 								<a href="<?php echo base_url('rmk/pengajuan_ta'); ?>">Pengajuan TA</a>
 							</li>
-							<li class="<?php if ($this->uri->segment('1') == 'rmk/sidang_ta') {echo 'active';} ?>">
+							<li class="<?php if ($this->uri->segment('2') == 'sidang_ta') {echo 'active';} ?>">
 								<a href="<?php echo base_url('rmk/sidang_ta'); ?>">Sidang TA</a>
 							</li>
 							<li><a href="<?php echo base_url('logout'); ?>">Logout</a></li>

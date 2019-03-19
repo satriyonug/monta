@@ -86,7 +86,7 @@
 										</center>
 									</td>
 									<td class="text-center">
-											<a href="<?php echo base_url('proposal/download/'.$row->id); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-circle btn-success">
+											<a href="<?php echo base_url('rmk/download_berkas/'.$row->id_ta); ?>" onclick="return confirm('Apakah anda yakin ingin mengunduh data ini ?')" class="btn btn-circle btn-success">
 													<i class="glyphicon glyphicon-download"></i>
 											</a>
 									</td>
