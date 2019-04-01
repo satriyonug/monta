@@ -120,7 +120,23 @@ class Rmk extends CI_Controller {
             $this->session->set_flashdata('berhasil_edit', 'sukses');
             redirect(base_url('rmk/sidang_ta'));
         }
-    }
+	}
+	
+	public function edit_status_sidang()
+	{
+		date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d H:i:s');
+		
+		$data=array(
+			'status'=>$_POST['status'],
+			'updated_at' => $date
+		);
+		$this->db->where('id_proposal', $_POST['id_proposal']);
+		$this->db->update('tb_proposal',$data);
+		$this->session->set_flashdata('berhasil_edit',"sukses");
+		redirect(base_url('rmk/sidang_ta'));
+ 
+	}
 
 	public function revisi_proposal()
 	{
@@ -135,6 +151,18 @@ class Rmk extends CI_Controller {
 		$this->db->update('tb_proposal',$data);
 		$this->session->set_flashdata('berhasil_edit',"sukses");
 		redirect(base_url('rmk/pengajuan_ta'));
+ 
+	}
+
+	public function input_nilai()
+	{
+		$data=array(
+			"nilai"=>$_POST['nilai']
+		);
+		$this->db->where('id_ta', $_POST['id_ta']);
+		$this->db->update('tb_sidang',$data);
+		$this->session->set_flashdata('berhasil_edit',"sukses");
+		redirect(base_url('rmk/sidang_ta'));
  
 	}
 

@@ -80,11 +80,13 @@
                                 { ?>
                                     <td>Belum Disetujui</td>
                                 <?php }
-                                else
+                                elseif($jdlta['status']==1)
                                 { ?>
                                     <td>Disetujui</td>
-                                <?php } ?>
-                                <?php  
+                                <?php } 
+                                else { ?>
+                                    <td>Ditolak</td>
+                                <?php }
                                 if ($jdlta['status'] == 0 )
                                 { ?>
                                     <td>

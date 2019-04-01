@@ -29,6 +29,23 @@ public function tampil_sidang() {
       return $query->result();
 }
 
+public function tampil_sidang_ta($nrp) {
+      $this->db->select('tb_sidang.*, tb_proposal.status');
+      $this->db->where('tb_sidang.nrp', $nrp);
+      $this->db->join('tb_proposal', 'tb_proposal.id_proposal = tb_sidang.id_ta');
+      $this->db->order_by('id','DESC');
+      $query = $this->db->get('tb_sidang');
+      return $query->result();
+}
+
+
+public function tampil_sidang_nrp($id) {
+      $this->db->select('*');
+      $this->db->where('id_ta',$id);
+      $query = $this->db->get('tb_sidang');
+      return $query->result();
+}
+
 
 public function get_sidang_rmk($rmk)
 	{

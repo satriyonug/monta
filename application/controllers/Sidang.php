@@ -27,7 +27,7 @@ class Sidang extends CI_Controller {
         $this->db->from('tb_proposal');
         $this->db->where('nrp', $id_login);
         $query = $this->db->get();
-        $data['sidang'] = $this->MPengajuan->tampil_sidang();
+        $data['sidang'] = $this->MPengajuan->tampil_sidang_ta($id_login);
         $data['data']   = $query->result_array();
         $data['konten'] = "pengajuan/mengajukan_sidang";
         $data['web']    = $this->MWeb->tampil()->row();

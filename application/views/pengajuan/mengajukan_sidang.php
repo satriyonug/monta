@@ -110,12 +110,18 @@ else { ?>
           <th>Pembimbing2</th>
           <th>Status</th>
           <?php foreach ($sidang as $tgl) : 
-          if ($tgl->status == "Maju Sidang" )
+          if ($tgl->status == "Maju Sidang" AND $tgl->tgl_sidang_ta != NULL 
+          AND ($tgl->dosen_penguji1 != NULL or $tgl->dosen_penguji2 != NULL))
           { ?>
               <th>Tanggal Sidang</th>
               <th>Dosen Penguji 1</th>
               <th>Dosen Penguji 2</th>
-          <?php } endforeach ?>
+          <?php } 
+          if ($tgl->status == "Lulus")
+          { ?>
+            <th>Nilai</th>
+          <?php }
+          endforeach ?>
           
       </tr>
       </thead>
@@ -132,6 +138,10 @@ else { ?>
               <td><?php echo $value->tgl_sidang_ta?></td>
               <td><?php echo $value->dosen_penguji1?></td>
               <td><?php echo $value->dosen_penguji2?></td>
+          <?php } ?>
+          <?php  if ($value->status == "Lulus" )
+          { ?>
+            <td><?php echo $value->nilai?></td>
           <?php } ?>
       </tr>
       <?php $no++; endforeach; ?>

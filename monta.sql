@@ -53,7 +53,7 @@ CREATE TABLE `tb_judul` (
 
 /*Data for the table `tb_judul` */
 
-insert  into `tb_judul`(`id`,`nama_mhs`,`nrp_mhs`,`rmk`,`judul_ta`,`abstrak`,`pembimbing_ta`,`nip`,`catatan`,`status`,`created_at`,`updated_at`) values (2,'Nabilah Zaki Lismia','05111540000020','IGS','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream','Abdul Munif, S.Kom., M.Sc.','198608232015041004',NULL,1,'2019-03-13 03:55:34','2019-03-13 03:55:34'),(4,'Satriyo Nugroho','05111540000034','MI','Virtual Assistant Chatbot pada aplikasi Gifood.id Menggunakan Speech Recognition dengan Algoritma Natural Language Processing','Virtual Assistant Chatbot pada aplikasi Gifood.id Menggunakan Speech Recognition dengan Algoritma Natural Language Processing dan Cousin Similarity','Dr.tech. Ir. R.V.HARI GINARDI, M.Sc.','196505181992031003',NULL,1,'2019-03-18 14:41:20','2019-03-18 14:42:08');
+insert  into `tb_judul`(`id`,`nama_mhs`,`nrp_mhs`,`rmk`,`judul_ta`,`abstrak`,`pembimbing_ta`,`nip`,`catatan`,`status`,`created_at`,`updated_at`) values (4,'Nabilah Zaki Lismia','05111540000020','IGS','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream','Abdul Munif, S.Kom., M.Sc.','198608232015041004','Mengganti Teknologinya',1,'2019-04-01 23:54:07','2019-04-01 23:54:48');
 
 /*Table structure for table `tb_proposal` */
 
@@ -76,6 +76,7 @@ CREATE TABLE `tb_proposal` (
   `referensi_ta` blob,
   `revisi` text,
   `status` varchar(100) NOT NULL,
+  `tgl_sidang_proposal` date DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_proposal`),
@@ -84,7 +85,7 @@ CREATE TABLE `tb_proposal` (
 
 /*Data for the table `tb_proposal` */
 
-insert  into `tb_proposal`(`prefix`,`id_proposal`,`nama_mhs`,`nrp`,`rmk`,`judul_ta`,`abstrak_ta`,`kata_kunci_ta`,`pembimbing1_ta`,`nip1`,`pembimbing2_ta`,`nip2`,`proposal_ta`,`referensi_ta`,`revisi`,`status`,`created_at`,`updated_at`) values ('TA',17,'Alfindio Muhammad Abdallah','05111540000164','MI','Sentiment Analysis pada Tweet berbahasa Indonesia menggunakan fastText dengan metode klasifikasi Naïve Bayes, Decision Tree, dan Random Forest','Sentiment Analysis pada Tweet berbahasa Indonesia menggunakan fastText dengan metode klasifikasi Naïve Bayes, Decision Tree, dan Random Forest\r\n','Naive Bayes','Abdul Munif, S.Kom., M.Sc.','198608232015041004','',NULL,'Proposal TA - Satriyo Nugroho - 05111540000034.pdf','',NULL,'Mendaftar','2019-03-08 16:00:42','2019-03-08 21:15:18'),('TA',29,'Alvin Mudhoffar','05111540000062','RPL','Implementasi Otentikasi Single-Factor dan Multi-Factor Berbasis Protokol WebAuthn di Aplikasi myITS Single Sign-On','Implementasi Otentikasi Single-Factor dan Multi-Factor Berbasis Protokol WebAuthn di Aplikasi myITS Single Sign-On','SSO','Rizky Januar Akbar, S.Kom., M.Eng.','198701032014041001','Abdul Munif, S.Kom., M.Sc.','198608232015041004','Proposal_TA_-_Satriyo_Nugroho_-_05111540000034.pdf',NULL,NULL,'Mendaftar','2019-03-09 15:32:19','2019-03-09 15:34:09'),('TA',34,'Nabilah Zaki Lismia','05111540000020','IGS','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream          ','daydream','Abdul Munif, S.Kom., M.Sc.',NULL,'Rizky Januar Akbar, S.Kom., M.Eng.','198701032014041001','NLPBot-master.zip',NULL,NULL,'Mendaftar','2019-03-16 21:34:16','2019-03-16 21:34:16'),('TA',36,'Satriyo Nugroho','05111540000034','MI','Virtual Assistant Chatbot pada aplikasi Gifood.id Menggunakan Speech Recognition dengan Algoritma Natural Language Processing','Virtual Assistant Chatbot pada aplikasi Gifood.id Menggunakan Speech Recognition dengan Algoritma Natural Language Processing dan Cousin Similarity          ','NLP, Chatbot, Voice Recognition','Dr.tech. Ir. R.V.HARI GINARDI, M.Sc.','196505181992031003','Kelly Rossa Sungkono, S.Pd., M,Pd.','1994201912088','Proposal_TA_-_Satriyo_Nugroho_-_05111540000034.pdf',NULL,NULL,'Maju Sidang','2019-03-18 14:44:52','2019-03-18 15:48:41');
+insert  into `tb_proposal`(`prefix`,`id_proposal`,`nama_mhs`,`nrp`,`rmk`,`judul_ta`,`abstrak_ta`,`kata_kunci_ta`,`pembimbing1_ta`,`nip1`,`pembimbing2_ta`,`nip2`,`proposal_ta`,`referensi_ta`,`revisi`,`status`,`tgl_sidang_proposal`,`created_at`,`updated_at`) values ('TA',17,'Alfindio Muhammad Abdallah','05111540000164','MI','Sentiment Analysis pada Tweet berbahasa Indonesia menggunakan fastText dengan metode klasifikasi Naïve Bayes, Decision Tree, dan Random Forest','Sentiment Analysis pada Tweet berbahasa Indonesia menggunakan fastText dengan metode klasifikasi Naïve Bayes, Decision Tree, dan Random Forest\r\n','Naive Bayes','Abdul Munif, S.Kom., M.Sc.','198608232015041004','',NULL,'Proposal TA - Satriyo Nugroho - 05111540000034.pdf','',NULL,'Mendaftar',NULL,'2019-03-08 16:00:42','2019-03-08 21:15:18'),('TA',29,'Alvin Mudhoffar','05111540000062','RPL','Implementasi Otentikasi Single-Factor dan Multi-Factor Berbasis Protokol WebAuthn di Aplikasi myITS Single Sign-On','Implementasi Otentikasi Single-Factor dan Multi-Factor Berbasis Protokol WebAuthn di Aplikasi myITS Single Sign-On','SSO','Rizky Januar Akbar, S.Kom., M.Eng.','198701032014041001','Abdul Munif, S.Kom., M.Sc.','198608232015041004','Proposal_TA_-_Satriyo_Nugroho_-_05111540000034.pdf',NULL,NULL,'Menunggu Sidang Proposal','2019-03-20','2019-03-09 15:32:19','2019-03-19 01:54:55'),('TA',36,'Nabilah Zaki Lismia','05111540000020','IGS','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream          ','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream          ','Speech Recognition','Abdul Munif, S.Kom., M.Sc.','198608232015041004','Rizky Januar Akbar, S.Kom., M.Eng.','198701032014041001','cover_proposalTA_05111540000034.pdf',NULL,NULL,'Lulus','2019-04-10','2019-04-01 23:55:49','2019-04-01 23:58:17');
 
 /*Table structure for table `tb_sidang` */
 
@@ -102,13 +103,17 @@ CREATE TABLE `tb_sidang` (
   `pembimbing2` varchar(100) DEFAULT NULL,
   `nip2` varchar(100) DEFAULT NULL,
   `berkas` blob NOT NULL,
+  `tgl_sidang_ta` date DEFAULT NULL,
   `created_at` datetime NOT NULL,
+  `dosen_penguji1` varchar(100) DEFAULT NULL,
+  `dosen_penguji2` varchar(100) DEFAULT NULL,
+  `nilai` char(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_sidang` */
 
-insert  into `tb_sidang`(`id`,`id_ta`,`nama`,`nrp`,`rmk`,`judul_ta`,`pembimbing1`,`nip1`,`pembimbing2`,`nip2`,`berkas`,`created_at`) values (6,36,'Satriyo Nugroho','05111540000034','MI','Virtual Assistant Chatbot pada aplikasi Gifood.id Menggunakan Speech Recognition dengan Algoritma Natural Language Processing','Dr.tech. Ir. R.V.HARI GINARDI, M.Sc.','196505181992031003','Kelly Rossa Sungkono, S.Pd., M,Pd.','1994201912088','NLPBot-master.zip','2019-03-18 15:47:24');
+insert  into `tb_sidang`(`id`,`id_ta`,`nama`,`nrp`,`rmk`,`judul_ta`,`pembimbing1`,`nip1`,`pembimbing2`,`nip2`,`berkas`,`tgl_sidang_ta`,`created_at`,`dosen_penguji1`,`dosen_penguji2`,`nilai`) values (3,36,'Nabilah Zaki Lismia','05111540000020','IGS','Simulasi Berbicara dalam Bahasa Asing Berbasis Realitas Virtual Menggunakan Speech Recognition, Chatbot, dan Teknologi Google Daydream                    ','Abdul Munif, S.Kom., M.Sc.','198608232015041004','Rizky Januar Akbar, S.Kom., M.Eng.','198701032014041001','NLPBot-master.zip','2019-04-30','2019-04-01 23:57:31','Dr.tech. Ir. R.V.HARI GINARDI, M.Sc.','Kelly Rossa Sungkono, S.Pd., M,Pd.','A');
 
 /*Table structure for table `tb_user` */
 

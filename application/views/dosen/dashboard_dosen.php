@@ -62,11 +62,24 @@
 																	<i class="glyphicon glyphicon-check"></i>
 																</a>
 															<?php
+															?><a href="<?php echo base_url('dosen/tolak/'.$row['id']); ?>" 
+															onclick="return confirm('Apakah anda yakin ingin mengkonfirmasi data ini ?')" class="btn btn-circle btn-danger">
+															<i class="glyphicon glyphicon-remove"></i>
+														</a>
+													<?php
 													}
 													else {
 												?>
-													<p>Judul Diterima</p>
+													<?php if ($row['status'] == 1)
+													{ ?>
+														<p>Judul Diterima</p>
 													<?php } ?>
+													
+													<?php if ($row['status'] == 2)
+													{ ?>
+														<p>Judul Ditolak</p>
+													<?php } ?>
+												<?php } ?>
 
 												
 											</center>

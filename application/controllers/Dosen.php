@@ -50,6 +50,25 @@ class Dosen extends CI_Controller {
         }
     } 
 
+    public function tolak($id)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d H:i:s');
+        
+        $objek = array(
+                
+            'status' => "2",
+            'updated_at' => $date
+             );
+
+        $this->db->where('id', $id);
+        $query = $this->db->update('tb_judul', $objek);
+        if ($query) {
+            $this->session->set_flashdata('berhasil_edit', 'sukses');
+            redirect(base_url('dosen'));
+        }
+    } 
+
     public function catatan()
 	{
 		date_default_timezone_set('Asia/Jakarta');
